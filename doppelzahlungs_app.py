@@ -50,7 +50,7 @@ if uploaded_file:
     prefix_counts = df_4200["BelegNr_prefix"].value_counts().sort_index()
 
     st.subheader("📌 BelegNr-Prefix Histogramm")
-    fig, ax = plt.subplots(figsize=(4, 2))
+    fig, ax = plt.subplots(figsize=(2, 1))
     bars = ax.bar(prefix_counts.index, prefix_counts.values)
     for bar in bars:
         height = bar.get_height()
@@ -62,7 +62,7 @@ if uploaded_file:
     st.subheader("💬 Wordcloud aus Buchungstexten")
     bu_text = " ".join(df["BuText"].dropna().astype(str))
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(bu_text)
-    fig_wc, ax_wc = plt.subplots(figsize=(4, 2))
+    fig_wc, ax_wc = plt.subplots(figsize=(2, 1))
     ax_wc.imshow(wordcloud, interpolation='bilinear')
     ax_wc.axis("off")
     st.pyplot(fig_wc)
@@ -89,4 +89,5 @@ if uploaded_file:
     excel_buffer = BytesIO()
     df_result.to_excel(excel_buffer, index=False)
     st.download_button("📥 Ergebnis als Excel herunterladen", data=excel_buffer.getvalue(), file_name="df_4200_Gefiltert.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
 
