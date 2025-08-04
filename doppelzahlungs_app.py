@@ -61,7 +61,7 @@ if uploaded_file:
     # Wordcloud BuText
     st.subheader("💬 Wordcloud aus Buchungstexten")
     bu_text = " ".join(df["BuText"].dropna().astype(str))
-    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(bu_text)
+    wordcloud = WordCloud(width=200, height=100, background_color='white').generate(bu_text)
     fig_wc, ax_wc = plt.subplots(figsize=(2, 1))
     ax_wc.imshow(wordcloud, interpolation='bilinear')
     ax_wc.axis("off")
@@ -89,5 +89,6 @@ if uploaded_file:
     excel_buffer = BytesIO()
     df_result.to_excel(excel_buffer, index=False)
     st.download_button("📥 Ergebnis als Excel herunterladen", data=excel_buffer.getvalue(), file_name="df_4200_Gefiltert.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
 
 
